@@ -66,6 +66,11 @@
   ::selection {
     background: rgb(207 150 114 / 0.35);
   }
+
+  /* Icons keep their size when a button or link gets tight on small screens. */
+  svg {
+    flex-shrink: 0;
+  }
 }
 
 /* Reusable building blocks, so the same styles aren't repeated in every component. */
@@ -89,7 +94,6 @@
   .btn {
     @apply inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-[15px] font-medium whitespace-nowrap transition duration-200 active:scale-[0.98];
   }
-
   .btn-primary {
     @apply bg-secondary text-white hover:bg-[#23333f];
   }

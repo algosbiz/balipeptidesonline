@@ -12,7 +12,7 @@ type QuantityStepperProps = {
 
 export default function QuantityStepper({ value, onChange, productName }: QuantityStepperProps) {
   const buttonClass =
-    "grid size-9 place-items-center rounded-full text-heading transition hover:bg-cream disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent";
+    "grid size-11 place-items-center xl:size-9 rounded-full text-heading transition hover:bg-cream disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:bg-transparent";
 
   return (
     <div className="inline-flex shrink-0 items-center rounded-full border border-line bg-white p-0.5">

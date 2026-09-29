@@ -15,7 +15,7 @@ export default function Benefits() {
         {benefits.map((benefit) => (
           <li
             key={benefit.title}
-            className="flex items-center gap-3.5 last:col-span-2 sm:last:col-span-1 lg:justify-center lg:border-l lg:border-line lg:px-4 lg:first:border-l-0"
+            className="flex flex-col items-start gap-2.5 last:col-span-2 sm:flex-row sm:items-center sm:gap-3.5 sm:last:col-span-1 lg:justify-center lg:border-l lg:border-line lg:px-4 lg:first:border-l-0"
           >
             <span className="grid size-11 shrink-0 place-items-center rounded-full bg-cream text-primary-dark">
               <benefit.icon className="size-5" />

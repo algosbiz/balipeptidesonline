@@ -6,7 +6,7 @@ export default function WhatsAppCTA() {
   return (
     <section aria-labelledby="cta-title" className="bg-white pb-20 sm:pb-28">
       <div className="container-page">
-        <div className="reveal relative overflow-hidden rounded-[2rem] bg-primary px-6 py-16 text-center sm:px-12 sm:py-20 lg:py-24">
+        <div className="reveal relative overflow-hidden rounded-[2rem] bg-primary px-5 py-16 text-center sm:px-12 sm:py-20 lg:py-24">
           <Image
             src="/images/logo/bali-peptides-mark.png"
             alt=""
@@ -36,7 +36,7 @@ export default function WhatsAppCTA() {
               href={getWhatsAppUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary mt-9 px-8 py-4 text-base"
+              className="btn btn-primary mt-9 w-full max-w-xs px-5 py-4 text-[15px] sm:w-auto sm:max-w-none sm:px-8 sm:text-base"
             >
               <WhatsAppIcon className="size-5 text-accent" />
               Chat with Bali Peptides

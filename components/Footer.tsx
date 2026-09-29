@@ -22,10 +22,10 @@ export default function Footer() {
 
         <nav aria-label="Footer">
           <p className="font-label text-sm font-semibold text-white">Navigation</p>
-          <ul className="mt-5 space-y-3">
+          <ul className="mt-4 space-y-1">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} {...externalLinkProps(link)} className="transition hover:text-primary">
+                <a href={link.href} {...externalLinkProps(link)} className="inline-block py-2.5 transition hover:text-primary">
                   {link.label}
                 </a>
               </li>
@@ -35,16 +35,18 @@ export default function Footer() {
 
         <div>
           <p className="font-label text-sm font-semibold text-white">Contact</p>
-          <ul className="mt-5 space-y-3">
+          <ul className="mt-4 space-y-1">
             <li>
               <a
                 href={getWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 transition hover:text-primary"
+                className="inline-flex items-center gap-2 py-2.5 transition hover:text-primary"
               >
                 <WhatsAppIcon className="size-4 text-accent" />
-                WhatsApp {WHATSAPP_DISPLAY_NUMBER}
+                <span>
+                  WhatsApp <span className="whitespace-nowrap">{WHATSAPP_DISPLAY_NUMBER}</span>
+                </span>
               </a>
             </li>
             <li>
@@ -52,7 +54,7 @@ export default function Footer() {
                 href={siteConfig.catalogueUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 transition hover:text-primary"
+                className="inline-flex items-center gap-1.5 py-2.5 transition hover:text-primary"
               >
                 Peptides Bali Online
                 <ArrowUpRightIcon className="size-3.5" />

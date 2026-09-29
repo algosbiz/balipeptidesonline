@@ -20,7 +20,7 @@ export default function Products() {
             href={siteConfig.catalogueUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-link self-start lg:self-auto"
+            className="text-link self-start py-2 lg:self-auto"
           >
             For full product availability visit Peptides Bali
             <ArrowUpRightIcon className="ml-1 inline size-4 align-[-3px]" />

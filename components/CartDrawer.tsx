@@ -69,7 +69,7 @@ export default function CartDrawer() {
             <ul className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
               {lines.map(({ product, quantity }) => (
                 <li key={product.id} className="flex gap-4 rounded-2xl bg-white p-3 ring-1 ring-line">
-                  <div className="relative size-20 shrink-0 overflow-hidden rounded-xl bg-cream">
+                  <div className="relative size-16 shrink-0 overflow-hidden rounded-xl bg-cream min-[380px]:size-20">
                     <Image src={product.image} alt="" fill sizes="80px" className="object-cover" />
                   </div>
                   <div className="flex min-w-0 flex-1 flex-col">
@@ -119,18 +119,18 @@ export default function CartDrawer() {
                 <span className="font-medium text-heading">Total items</span>
                 <span className="text-xl font-semibold text-heading tabular-nums">{totalQuantity}</span>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted">
+              <p className="mt-2 text-sm leading-relaxed text-muted [@media(max-height:30rem)]:hidden">
                 Your order opens in WhatsApp. Our team will confirm availability, pricing and delivery.
               </p>
               <a
                 href={checkoutUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary mt-4 w-full py-4 text-base"
+                className="btn btn-primary mt-4 w-full px-4 py-4 min-[380px]:text-base [@media(max-height:30rem)]:mt-3 [@media(max-height:30rem)]:py-3"
               >
                 <WhatsAppIcon className="size-5 text-accent" />
                 Proceed to Checkout
-                <ArrowRightIcon className="size-4" />
+                <ArrowRightIcon className="hidden size-4 min-[380px]:block" />
               </a>
               <button
                 type="button"

@@ -12,7 +12,7 @@ export default function Hero() {
             Same-Day Delivery Available
           </p>
 
-          <h1 className="fade-up mt-6 text-[2.6rem] leading-[1.02] font-semibold tracking-[-0.035em] [animation-delay:80ms] sm:text-6xl lg:text-[4rem] xl:text-[4.6rem]">
+          <h1 className="fade-up mt-6 text-[clamp(2.1rem,10.5vw,2.6rem)] leading-[1.02] font-semibold tracking-[-0.035em] [animation-delay:80ms] sm:text-6xl lg:text-[4rem] xl:text-[4.6rem]">
             Bali&apos;s Premium{" "}
             <span className="text-primary-dark sm:block">Peptide Delivery</span>{" "}
             Service

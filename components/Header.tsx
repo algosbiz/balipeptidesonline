@@ -115,7 +115,7 @@ export default function Header() {
         <nav
           id="mobile-menu"
           aria-label="Mobile"
-          className="border-t border-line bg-white lg:hidden"
+          className="max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-line bg-white lg:hidden"
         >
           <ul className="container-page py-4">
             {navLinks.map((link) => (
