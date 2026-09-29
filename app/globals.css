@@ -1,26 +1,195 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Bali Peptides brand colours.
+
+  These values are taken from the original balipeptides.online design.
+  Change a colour here and it updates everywhere on the site.
+  Tailwind turns each one into classes, e.g. --color-primary gives you
+  bg-primary, text-primary and border-primary.
+*/
+@theme {
+  /* Brand */
+  --color-primary: #cf9672; /* Bali Peptides copper (logo, buttons, highlights) */
+  --color-primary-dark: #9c6440; /* Deeper copper for small text on light backgrounds, so it stays readable */
+  --color-secondary: #101a21; /* Deep ink used for headings, buttons and the footer */
+  --color-accent: #61ce70; /* WhatsApp green */
+
+  /* Backgrounds */
+  --color-background: #ffffff;
+  --color-cream: #fff9f1;
+  --color-line: #ecdfd2; /* Soft borders and dividers */
+
+  /* Text */
+  --color-heading: #101a21;
+  --color-body: #333333;
+  --color-muted: #6b6b6b;
+
+  /* A warm, soft shadow that matches the copper palette */
+  --shadow-card: 0 1px 2px rgb(16 26 33 / 0.04), 0 18px 40px -18px rgb(107 74 51 / 0.28);
 }
 
+/* Fonts are loaded in app/layout.tsx and connected here. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces), Georgia, serif; /* Headings */
+  --font-sans: var(--font-inter), system-ui, sans-serif; /* Body text */
+  --font-label: var(--font-urbanist), var(--font-inter), sans-serif; /* Navigation and small labels */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Stops section headings hiding under the sticky header after a nav click. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-background font-sans text-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-heading;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary-dark);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: rgb(207 150 114 / 0.35);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Reusable building blocks, so the same styles aren't repeated in every component. */
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8;
+  }
+
+  .section {
+    @apply py-20 sm:py-28;
+  }
+
+  .eyebrow {
+    @apply font-label text-xs font-semibold tracking-[0.2em] text-primary-dark uppercase;
+  }
+
+  .section-title {
+    @apply text-[2.25rem] leading-[1.08] font-medium tracking-[-0.025em] sm:text-5xl;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5 text-[15px] font-medium whitespace-nowrap transition duration-200 active:scale-[0.98];
+  }
+
+  .btn-primary {
+    @apply bg-secondary text-white hover:bg-[#23333f];
+  }
+
+  .btn-outline {
+    @apply border border-secondary/15 bg-white/70 text-secondary hover:border-secondary/40 hover:bg-white;
+  }
+
+  .btn-copper {
+    @apply bg-primary text-secondary hover:bg-[#dcab8b];
+  }
+
+  .text-link {
+    @apply font-medium text-primary-dark underline decoration-primary/40 underline-offset-4 transition hover:decoration-primary-dark;
+  }
+}
+
+/* Gentle fade-up used on first load (hero) and while scrolling (sections). */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade-up {
+  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Scroll reveal uses pure CSS. Browsers without support simply show the content. */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: fade-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+/* Cart drawer: slides in from the right over a blurred backdrop. */
+.cart-drawer {
+  translate: 100% 0;
+  transition:
+    translate 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    overlay 0.35s allow-discrete,
+    display 0.35s allow-discrete;
+}
+
+.cart-drawer[open] {
+  translate: 0 0;
+}
+
+@starting-style {
+  .cart-drawer[open] {
+    translate: 100% 0;
+  }
+}
+
+.cart-drawer::backdrop {
+  background-color: rgb(16 26 33 / 0);
+  backdrop-filter: blur(0);
+  transition:
+    background-color 0.35s,
+    backdrop-filter 0.35s,
+    overlay 0.35s allow-discrete,
+    display 0.35s allow-discrete;
+}
+
+.cart-drawer[open]::backdrop {
+  background-color: rgb(16 26 33 / 0.35);
+  backdrop-filter: blur(6px);
+}
+
+@starting-style {
+  .cart-drawer[open]::backdrop {
+    background-color: rgb(16 26 33 / 0);
+    backdrop-filter: blur(0);
+  }
+}
+
+/* Stop the page behind the cart from scrolling while it is open. */
+html:has(.cart-drawer[open]) {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .fade-up,
+  .reveal {
+    animation: none;
+  }
+
+  .cart-drawer,
+  .cart-drawer::backdrop {
+    transition: none;
+  }
 }
