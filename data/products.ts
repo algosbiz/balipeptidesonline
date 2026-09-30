@@ -11,7 +11,8 @@ export type Product = {
   description: string;
   image: string;
   // Optional. Leave it out and the site writes the standard message:
-  // "Hi Bali Peptides, I'm interested in <name>. Could you please provide more information?"
+  // "I'm interested in <name>. Could you please provide more information?"
+  // The greeting that names balipeptides.online is always added in front automatically.
   whatsappMessage?: string;
 };
 

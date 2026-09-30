@@ -86,12 +86,12 @@ Edit the text between the quotes and save.
    - `name`, `category` and `description`
    - `image` to your new file, e.g. `"/images/products/my-new-peptide.webp"`
 
-The card, the number badge and the WhatsApp message ("Hi Bali Peptides, I'm interested in …") are created automatically.
+The card, the number badge and the WhatsApp message ("I'm interested in …") are created automatically.
 
-If you want a product to send a different WhatsApp message, add a `whatsappMessage` line to it:
+If you want a product to send a different WhatsApp message, add a `whatsappMessage` line to it. There's no need to add a greeting, because the site adds it for you (see below):
 
 ```ts
-whatsappMessage: "Hi Bali Peptides, do you have the NAD+ nasal spray in stock?",
+whatsappMessage: "Do you have the NAD+ nasal spray in stock?",
 ```
 
 ### Replace a product image
@@ -106,7 +106,10 @@ Open `lib/whatsapp.ts`.
 
 - `WHATSAPP_NUMBER` is the number the buttons open. Use the international format with no `+`, spaces or dashes (e.g. `6282326300167`).
 - `WHATSAPP_DISPLAY_NUMBER` is the version shown to visitors in the footer.
+- `OPENING_LINE` is added to the start of every WhatsApp message from the website: "Hi Bali Peptides, I'm contacting you from balipeptides.online." It tells the team which website the customer came from, because the same number is used for more than one site.
 - The pre-written messages are underneath and can be reworded freely.
+
+Visitors can still edit the message in WhatsApp before sending it, so in rare cases the website line may be deleted.
 
 ### How the cart works
 
@@ -116,7 +119,9 @@ Open `lib/whatsapp.ts`.
 - The checkout message is written by `getCartMessage` in `lib/whatsapp.ts`. It looks like this:
 
 ```
-Hi Bali Peptides, I'd like to order:
+Hi Bali Peptides, I'm contacting you from balipeptides.online.
+
+I'd like to order:
 
 • 2 × Retatrutide Bali
 • 1 × NAD+ Bali
